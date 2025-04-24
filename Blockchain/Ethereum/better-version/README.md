@@ -1,1 +1,1 @@
-Everyone can call `_authorizeUpgrade`, you should make a assembly smart contract with selfdestruct to get under the 3 size limit
+Everyone can call `_authorizeUpgrade`, should implement a custom SC with expected function
