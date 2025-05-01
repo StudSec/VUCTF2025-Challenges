@@ -1,9 +1,12 @@
-FROM ubuntu:22.04
+FROM debian:bullseye-slim
 
-RUN apt install -y socat python2
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && \
+    apt-get install -y python2 socat && \
+    ln -s /usr/bin/python2 /usr/bin/python
 
 WORKDIR /app
-COPY baby-roomba-cnc.py .
+COPY baby-roomba.py .
 
 EXPOSE 1337
 

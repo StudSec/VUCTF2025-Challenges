@@ -1,0 +1,5 @@
+[537bb219-19af-41c0-b1d8-f401e7fed4e7]
+name = "Big Roomba"
+difficulty = "medium"
+flag = { "VUCTF{<0mm4nd_4nd_v4cVVm}" = 300 }
+url = ["nc {{IP}} {{PORT}}"]
