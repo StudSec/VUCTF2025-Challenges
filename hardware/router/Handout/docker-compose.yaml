@@ -1,0 +1,13 @@
+
+version: '3.8'
+
+services:
+  builder:
+    container_name: gdb_cont
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ..:/src
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
