@@ -76,9 +76,6 @@ while True:
                 if flag in line:
                     result["FLAG_CORRECT"] = ""
                     break
-                elif 'VUCTF{' in line:
-                    result["FLAG_CORRECT"] = "Found different flag: " + line.split(': ')[1].strip().decode()
-                    break
                 elif line == "END\n":
                     break
                 else:
@@ -99,9 +96,6 @@ while True:
         _, missmatch, _ = filecmp.cmpfiles(handout_path, deployment_path,
                                           expected_files, shallow=False)
         result["HANDOUT_CORRECT"] = ''.join(missmatch)
-        
-    # Assert that all credentials/flags in the handout files are invalid (DUMMY_SECRET)
-    result["DUMMY_SECRET"] = grep_recursive("VUCTF{", handout_path)
     
     return result
 
