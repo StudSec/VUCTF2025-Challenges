@@ -1,4 +1,4 @@
 [e0588f32-8916-4eb9-9dc1-c0af404be68d]
 name = "Roombriaan"
 difficulty = "easy"
-flag = { "vuctf{my_r00mb4_15_4n_4rt15t}" = 75 }
+flag = { "VUCTF{my_r00mb4_15_4n_4rt15t}" = 75 }
