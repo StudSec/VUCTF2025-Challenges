@@ -1,0 +1,16 @@
+services:
+  vm_container:
+    container_name: vm_container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${HOSTNAME}:${PORT}:1337"
+    environment:
+      - PORT=${PORT}
+      - FLAG=${FLAG}
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    devices:
+      - /dev/kvm
+    privileged: true
