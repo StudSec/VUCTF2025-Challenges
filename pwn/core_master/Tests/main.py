@@ -57,7 +57,7 @@ def run_test(flag, connection_string=None, handout_path=None, deployment_path=No
         result["HANDOUT_CORRECT"] = "Missing challenge binary or Dockerfile in handout"
     else:
         _, missmatch, _ = filecmp.cmpfiles(handout_path, deployment_path,
-                                           ["challenge.c", "Dockerfile"], shallow=False)
+                                           ["chall", "Dockerfile"], shallow=False)
         result["HANDOUT_CORRECT"] = ''.join(missmatch)
 
 
