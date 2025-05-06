@@ -1,0 +1,6 @@
+[eef4cfef-d2cb-4d17-a70f-25d8cc0aa2c7]
+name = "time"
+difficulty = "easy"
+flag = {"VUCTF{t1M3_i5_Fl4g_1337_h4xx0R}" = 100}
+url = ["nc {{IP}} {{PORT}}"]
+dynamic_flags = true

@@ -1,0 +1,8 @@
+# Challenge overview
+The binary loads the flag from a local flag.txt file and then converts the middle 4 chars of the flag to their corresponding hex representation. Specifically, flag[6:9] are converted. The chars to convert start right after the initial "VUCTF{" string. Then it takes a 8-char input from the user and checks if the input matches the converted hex values in reverse, char by char, starting from the rightmost position of the input. Specifically, hex[0] is checked against input[7], hex[1] with input[6] and so on. When a character is matched, the program sleeps for 0.25 second. If a character doesn't match, the program exits immediately. This gives the attacker a chance to do a timing-based attack to figure out the correct input chars.
+
+# Deployment and design info
+The user will be given the corresponding challenge binary which they'll have to reverse-engineer to understand the program logic and mount the attack. The server will run the binary. I have used redpwn jail docker container to build and deploy the challenge. The jail will take care of concurrent connections and provide a sandboxed instance. The dockerfile contains the necessary commands to deploy the container and run the binary inside it. 
+
+# Solution approach
+The participants will send 8-char input, change one char at a time from the rightmost position and time the response. Each successful guess will take about 0.25s more than the incorrect guesses. They'll then have to add the correct guess to their current guess and go for the next char until they figure out all the chars from the timing differences. The possible charset is [a-f0-9], 16 chars. So, in the worst case, there'll be 16x8=128 guesses.
