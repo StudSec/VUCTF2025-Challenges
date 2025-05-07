@@ -1,0 +1,6 @@
+[dab4f54f-23ce-4312-8f43-4faa7b16f69d]
+name = "JSniffer"
+difficulty = "medium"
+flag = {"VUCTF{jS_m4lw3re_f0r3ncics_r3vy}" = 250}
+url = [""]
+dynamic_flags = false
