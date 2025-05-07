@@ -1,1 +1,1 @@
-Pick your favorite decompiler and have a good long stare
+Investigating and understanding what has happened on a computer system, preferably before the hackers have escaped.
