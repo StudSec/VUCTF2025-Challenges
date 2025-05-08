@@ -1,0 +1,9 @@
+services:
+  incremental_disorder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${HOSTNAME}:${PORT}:1234"
+    environment:
+      - FLAG=${FLAG}
