@@ -1,0 +1,9 @@
+# Challenge overview
+
+The challenge contains a chain of vulns to complete the exploitation. In `main()`, the first vuln, **one-byte-overflow of a function pointer**, lies. A long, unsigned integer (8-byte) is taken as input in a 3-byte character field of a struct. There's a 4-byte int in between the character field and the function pointer. So the 8-byte unsigned int input allows overwriting last byte of function pointer which if set correctly will lead to the `vuln()` function where rest of the vulnerabilities lie.
+
+In `vuln()`, there's a **format string vuln** which will let players leak canary, stack, program and libc address. At the end of vuln(), there's a **bof** which only allows overwriting least significant two-bytes of RBP, forcing the player to do a **stack pivot**. The RBP can be set to the input buf using the leaks earlier. The input buf will then hold the ropchain to do `system("/bin/sh")` call. The pop_rdi gadget needed for system() is available in the libc. The input buf should also handle two stack_protection checks, one in `vuln()` and another in `main()`, by placing the canaries in the right place.
+N.B. the binary has all protections turned on (NX, Full RELRO, Canary).
+
+# Deployment and design info
+The user will be given the corresponding challenge binary which they'll have to reverse-engineer to understand the program logic and mount the attack. The server will run the binary. I have used redpwn jail docker container to build and deploy the challenge. The jail will take care of concurrent connections and provide a sandboxed instance. The dockerfile contains the necessary commands to deploy the container and run the binary inside it. The Dockerfile with pwnjail will be provided along with the binary. Players can extract the libc from the docker container.

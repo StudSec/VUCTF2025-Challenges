@@ -1,0 +1,5 @@
+[5566f977-489a-49ab-8767-1a87d9b4f966]
+name = "Baby Roomba"
+difficulty = "easy"
+flag = { "VUCTF{p00r_b4b13s}" = 100 }
+url = ["nc {{IP}} {{PORT}}"]
