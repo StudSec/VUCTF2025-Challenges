@@ -1,9 +1,9 @@
 services:
-  buffer_overflow:
+  incremental_disorder:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "${HOSTNAME}:${PORT}:1337"
+      - "${HOSTNAME}:${PORT}:1234"
     environment:
       - FLAG=${FLAG}

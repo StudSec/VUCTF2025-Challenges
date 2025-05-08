@@ -1,1 +1,1 @@
-CTF{FLAG}
+VUCTF{7_8te_91N3}

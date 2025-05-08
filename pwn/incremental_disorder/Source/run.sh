@@ -2,7 +2,7 @@
 
 # Default values for optional parameters
 HOSTNAME="127.0.0.1"
-PORT=1337
+PORT=1234
 FLAG=""
 TEAM_UUID=""
 
@@ -44,7 +44,7 @@ export PORT=$PORT
 export FLAG=$FLAG
 
 if [ -n "$TEAM_UUID" ]; then
-  docker compose -p "buffer_overflow_$TEAM_UUID" up --build -d
+  docker compose -p "incremental_disorder_$TEAM_UUID" up --build -d
 else
   docker compose up --build -d
 fi
