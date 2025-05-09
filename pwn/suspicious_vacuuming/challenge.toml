@@ -1,0 +1,6 @@
+[cc5e204c-4ae7-457a-ad6e-174d044af612]
+name = "suspicious_vacuuming"
+difficulty = "hard"
+flag = {"VUCTF{v8cu5mMF4ta}" = 500}
+url = ["nc {{IP}} {{PORT}}"]
+dynamic_flags = false
