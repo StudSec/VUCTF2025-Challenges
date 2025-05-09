@@ -1,5 +1,5 @@
-[5477fef7-ed95-47ac-b85b-c8c701ee6cbb]
+[0593f7a3-d105-4a8e-a85a-1e3bf587a2bb]
 name = "UARTifact"
 difficulty = "easy"
-flag = {"VUCTF{admin:UODDXH}" = 100}
+flag = {"VUCTF{lov2cl3an&suck}" = 100}
 dynamic_flags = false
