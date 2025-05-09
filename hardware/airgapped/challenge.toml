@@ -1,5 +1,0 @@
-[0e48430d-0980-496d-9183-79a5d17eb209]
-name = "Airgapped"
-difficulty = "easy"
-flag = {"VUCTF{D1g1sp3rk_k3ystr0kes_br34ch3d_A1rgaPPed_syst3ms}" = 50}
-dynamic_flags = true

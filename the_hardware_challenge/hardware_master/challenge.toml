@@ -1,0 +1,5 @@
+[a1cb7f15-d8c4-4728-ae04-568f605142b7]
+name = "hardware_master"
+difficulty = "hard"
+flag = {"VUCTF{h4rdw4r3_st4ff_1s_l1f3}" = 500}
+dynamic_flags = false

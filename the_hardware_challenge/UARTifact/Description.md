@@ -1,0 +1,1 @@
+What a beautiful router, but can you manage to dump the firmware and find the flag?

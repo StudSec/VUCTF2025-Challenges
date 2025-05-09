@@ -1,0 +1,6 @@
+[0713ead6-22ae-48e2-8c49-765c30bac121]
+name = "roomba_oriented_programming"
+difficulty = "medium"
+flag = {"VUCTF{r0p_m3_l1ke_1_of_YoUr_c0r3_d4mps}" = 200}
+url = ["nc {{IP}} {{PORT}}"]
+dynamic_flags = false

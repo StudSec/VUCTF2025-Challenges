@@ -1,0 +1,1 @@
+We captured network traffic from a hacked Roomba. It’s sending some strange JavaScript malware. Can you find the file, reverse it, and recover the secret key to help make VU safe again?

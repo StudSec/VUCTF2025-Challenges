@@ -1,0 +1,5 @@
+[f65550d4-4845-43e6-8e69-33c4be96337a]
+name = "CanYouSeeMee"
+difficulty = "medium"
+flag = {"VUCTF{rtsp_pwn3d}" = 250}
+dynamic_flags = false
