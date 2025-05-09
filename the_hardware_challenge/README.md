@@ -1,0 +1,3 @@
+# Hardware
+
+Informal description here
