@@ -1,6 +1,6 @@
 [bcef4642-feb7-4452-9c6d-4f2332c5645d]
 name = "mov_it_revenge_remastered"
 difficulty = "hard"
-flag = {"VUCTF{R3V3ng3_0F_tH3_M0vfuSC470r}" = 500}
+flag = {"VUCTF{R3V3ng3_0F_tH3_M0vfuSC470r}" = 300}
 url = [""]
 dynamic_flags = false
