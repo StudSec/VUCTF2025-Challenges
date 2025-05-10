@@ -27,7 +27,7 @@ gdbscript = """
 """
 
 # Binary filename
-exe = './time'
+exe = '../Source/time'
 # This will automatically get context arch, bits, os etc
 elf = context.binary = ELF(exe, checksec=False)
 # Change logging level to help with debugging (error/warning/info/debug)
@@ -53,7 +53,7 @@ while cnt <= guess_length:
         guess[-cnt] = c
         r.sendlineafter(": \n", "".join(guess))
         start = time.time()
-        resp = r.recvline(timout=10)
+        resp = r.recvline(timeout=5)
         end = time.time()
         # print(resp)
         total_time = end - start

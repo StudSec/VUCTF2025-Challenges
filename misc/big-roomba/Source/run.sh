@@ -3,7 +3,7 @@
 # Default values for optional parameters
 HOSTNAME="127.0.0.1"
 PORT=10001
-FLAG=""
+FLAG="VUCTF{test}"
 
 # Parse named arguments
 while [[ "$#" -gt 0 ]]; do

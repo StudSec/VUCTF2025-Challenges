@@ -3,7 +3,7 @@
 # Default values for optional parameters
 HOSTNAME="127.0.0.1"
 PORT=1234
-FLAG=""
+FLAG="VUCTF{test}"
 TEAM_UUID=""
 
 # Parse named arguments
