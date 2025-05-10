@@ -1,6 +1,6 @@
 [1f5332b6-a329-4369-8d33-da1410e33131]
 name = "Classified"
 difficulty = "easy"
-flag = {"VUCTF{C-O-U-L-D-N-T}" = 75}
+flag = {"VUCTF{CANC-O-U-L-D-N-T}" = 75}
 url = [""]
 dynamic_flags = false
