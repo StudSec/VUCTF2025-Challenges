@@ -1,0 +1,6 @@
+[ef55c5b6-c04e-4c8f-a4dc-83c9ca5f4cfe]
+name = "mov_it_revenge"
+difficulty = "hard"
+flag = {"VUCTF{m0v_1t_r3vrs3_m3}" = 500}
+url = [""]
+dynamic_flags = false

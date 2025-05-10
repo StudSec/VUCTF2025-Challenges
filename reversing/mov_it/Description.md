@@ -1,0 +1,1 @@
+We discovered unusual behavior in one of the Roombas as it roams the VU building. It appears they’ve implemented a custom MOV obfuscation routine. Can you reverse it and uncover the hidden message written to the `out` file?

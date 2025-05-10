@@ -1,0 +1,3 @@
+# welcome
+
+scan the barcode
