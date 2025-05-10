@@ -34,6 +34,7 @@ class Challenge:
             self.url = config[uuid]["url"]
         else:
             self.url = [""]
+        self.allocated_url = None
         self.dynamic_flags = config.get("dynamic_flags", False)
         self.handouts = []
 
@@ -62,7 +63,7 @@ class Challenge:
             self.port.append(port)
             return port
 
-        self.url = [re.sub(r"{{PORT}}", handle_port, url) for url in self.url]
+        self.allocated_url = [re.sub(r"{{PORT}}", handle_port, url) for url in self.url]
 
 
     def run(self):
