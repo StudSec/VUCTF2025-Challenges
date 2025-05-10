@@ -2,5 +2,4 @@
 name = "welcome"
 difficulty = "easy"
 flag = {"VUCTF{Welcome?}" = 50}
-url = ["nc {{IP}} {{PORT}}"]
 dynamic_flags = false
