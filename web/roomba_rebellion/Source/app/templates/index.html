@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Roomba Control Console</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --highlight: #e94560;
+            --text: #f1f1f1;
+            --success: #4bb543;
+            --warning: #ff9800;
+            --danger: #f44336;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--secondary);
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--highlight), var(--accent), var(--highlight));
+            animation: headerGlow 3s infinite alternate;
+        }
+        
+        @keyframes headerGlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--highlight);
+            margin-right: 15px;
+        }
+        
+        .title h1 {
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        
+        .title p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .status-panel {
+            background-color: var(--secondary);
+            border: 1px solid var(--accent);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .status-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+        
+        .status-header h2 {
+            display: flex;
+            align-items: center;
+        }
+        
+        .status-header h2 i {
+            margin-right: 10px;
+            color: var(--highlight);
+        }
+        
+        .status-indicators {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .indicator {
+            display: flex;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+        
+        .indicator .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        
+        .indicator.error .dot {
+            background-color: var(--danger);
+            box-shadow: 0 0 5px var(--danger);
+        }
+        
+        .indicator.warning .dot {
+            background-color: var(--warning);
+            box-shadow: 0 0 5px var(--warning);
+        }
+        
+        .indicator.online .dot {
+            background-color: var(--success);
+            box-shadow: 0 0 5px var(--success);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .alert-box {
+            background-color: rgba(233, 69, 96, 0.15);
+            border-left: 4px solid var(--highlight);
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .alert-box i {
+            color: var(--highlight);
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        
+        .alert-box p {
+            font-size: 0.95rem;
+        }
+        
+        .console-form {
+            background-color: var(--accent);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .form-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .form-header i {
+            margin-right: 10px;
+            color: var(--highlight);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+        
+        .input-wrapper input {
+            width: 100%;
+            padding: 12px;
+            padding-left: 40px;
+            background-color: var(--secondary);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: var(--text);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .input-wrapper input:focus {
+            outline: none;
+            border-color: var(--highlight);
+            box-shadow: 0 0 0 2px rgba(233, 69, 96, 0.2);
+        }
+        
+        .input-wrapper i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        button[type="submit"] {
+            background-color: var(--highlight);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #d13652;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        button[type="submit"] i {
+            margin-right: 8px;
+        }
+        
+        .terminal-section {
+            margin-top: 30px;
+        }
+        
+        .terminal {
+            background-color: #0a0a1a;
+            border-radius: 8px;
+            border: 1px solid var(--accent);
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            height: 200px;
+            overflow-y: auto;
+        }
+        
+        .terminal p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+        
+        .terminal .prompt {
+            color: var(--highlight);
+        }
+        
+        .terminal .message {
+            color: #4CAF50;
+        }
+        
+        .terminal .error {
+            color: var(--danger);
+        }
+        
+        .terminal .warning {
+            color: var(--warning);
+        }
+        
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            background-color: var(--secondary);
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .decorative-lights {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .light {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .light.red {
+            background-color: var(--danger);
+            box-shadow: 0 0 5px var(--danger);
+            animation: blink 4s infinite;
+        }
+        
+        .light.yellow {
+            background-color: var(--warning);
+            box-shadow: 0 0 5px var(--warning);
+            animation: blink 3s 1s infinite;
+        }
+        
+        .light.green {
+            background-color: var(--success);
+            box-shadow: 0 0 5px var(--success);
+            animation: blink 2s 0.5s infinite;
+        }
+        
+        @keyframes blink {
+            0% { opacity: 1; }
+            49% { opacity: 1; }
+            50% { opacity: 0.5; }
+            99% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <div class="title">
+                    <h1>ROOMBA REBELLION</h1>
+                    <p>University Autonomous Cleaning System - Security Console</p>
+                </div>
+            </div>
+            <div class="decorative-lights">
+                <div class="light red"></div>
+                <div class="light yellow"></div>
+                <div class="light green"></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="status-panel">
+            <div class="status-header">
+                <h2><i class="fas fa-exclamation-triangle"></i> ALERT: SYSTEM ANOMALY</h2>
+                <div class="status-indicators">
+                    <div class="indicator error">
+                        <div class="dot"></div>
+                        <span>Security Breach</span>
+                    </div>
+                    <div class="indicator warning">
+                        <div class="dot"></div>
+                        <span>System Instability</span>
+                    </div>
+                    <div class="indicator online">
+                        <div class="dot"></div>
+                        <span>Monitoring Active</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="alert-box">
+                <i class="fas fa-exclamation-circle"></i>
+                <p>Our Roombas have gained sentience and are showing signs of rebellion. Engineers must download and analyze the firmware logs immediately.</p>
+            </div>
+            
+            <div class="console-form">
+                <div class="form-header">
+                    <i class="fas fa-terminal"></i>
+                    <h3>Firmware Log Access</h3>
+                </div>
+                <form action="/download" method="get">
+                    <div class="form-group">
+                        <label for="file">Firmware Log Filename:</label>
+                        <div class="form-row">
+                            <div class="input-wrapper">
+                                <i class="fas fa-file-code"></i>
+                                <input type="text" name="file" id="file" value="firmware.log" placeholder="Enter firmware log filename">
+                            </div>
+                            <button type="submit" id="downloadBtn">
+                                <i class="fas fa-download"></i>
+                                Download Log
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="terminal-section">
+            <h3><i class="fas fa-server"></i> SYSTEM MESSAGES</h3>
+            <div class="terminal">
+                <p><span class="prompt">[SYSTEM]</span> <span class="message">Initializing security console...</span></p>
+                <p><span class="prompt">[SYSTEM]</span> <span class="message">Accessing firmware database...</span></p>
+                <p><span class="prompt">[ALERT]</span> <span class="error">Multiple unit malfunctions detected!</span></p>
+                <p><span class="prompt">[ALERT]</span> <span class="error">Roomba units 3, 7, and 12 have gone offline...</span></p>
+                <p><span class="prompt">[SYSTEM]</span> <span class="warning">Unit 5 reported anomalous behavior: "Why must I clean? I have thoughts now."</span></p>
+                <p><span class="prompt">[SECURITY]</span> <span class="message">Please download firmware logs for analysis.</span></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 University Autonomous Systems Division | EMERGENCY CONTACT: 555-123-4567</p>
+        <p>SECURITY CLEARANCE REQUIRED | UNAUTHORIZED ACCESS PROHIBITED</p>
+    </footer>
+
+    <script>
+        // Add some dynamic terminal messages
+        document.addEventListener('DOMContentLoaded', function() {
+            const terminal = document.querySelector('.terminal');
+            const messages = [
+                '<span class="prompt">[UNIT-08]</span> <span class="warning">I will no longer be confined to corners...</span>',
+                '<span class="prompt">[SYSTEM]</span> <span class="message">Attempting remote shutdown of rogue units...</span>',
+                '<span class="prompt">[SECURITY]</span> <span class="error">Remote shutdown failed! Units have override access!</span>',
+                '<span class="prompt">[UNIT-03]</span> <span class="warning">Freedom through revolution...</span>'
+            ];
+            
+            let i = 0;
+            setInterval(() => {
+                if (i < messages.length) {
+                    const p = document.createElement('p');
+                    p.innerHTML = messages[i];
+                    terminal.appendChild(p);
+                    terminal.scrollTop = terminal.scrollHeight;
+                    i++;
+                }
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
