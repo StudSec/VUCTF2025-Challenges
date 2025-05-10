@@ -1,0 +1,7 @@
+services:
+  roomba_rebellion:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${HOSTNAME}:${PORT}:5000"
