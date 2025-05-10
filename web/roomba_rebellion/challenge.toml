@@ -1,5 +1,6 @@
 [61fde0d6-16f4-4bfe-87f4-c4502ee3f290]
 name = "Roomba Rebellion"
 difficulty = "easy"
+url = ["http://{{IP}}:{{port}}"]
 flag = {"VUCTF{s3cure_p4th_tr4versal_f1lt3r}" = 50}
 dynamic_flags = false
