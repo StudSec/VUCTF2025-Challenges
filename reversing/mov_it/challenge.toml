@@ -1,6 +1,6 @@
 [c6f5ed17-15b5-473a-ba73-0bc0196a2225]
 name = "mov_it"
-difficulty = "medium"
-flag = {"VUCTF{x0rr_x0r_m0v_m0v}" = 325}
+difficulty = "easy"
+flag = {"VUCTF{x0rr_x0r_m0v_m0v}" = 50}
 url = [""]
 dynamic_flags = false

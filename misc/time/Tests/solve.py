@@ -11,7 +11,7 @@ def connect():
     if args.GDB:
         r = gdb.debug(elf.path, gdbscript=gdbscript)
     elif args.REMOTE:
-        r = remote("localhost", 6969)
+        r = remote("roomba1.studsec.nl", 1027)
     else:
         r = process([elf.path])
     return r
