@@ -43,6 +43,7 @@ def run_test(flag, connection_string=None, handout_path=None, deployment_path=No
 
         p.recvuntil(b"rpc endpoint:   ")
         rpc_endpoint = p.recvline()
+        rpc_endpoint = rpc_endpoint.replace(b"localhost", b"roomba2.studsec.nl")
 
         p.recvuntil(b"private key:    ")
         private_key = p.recvline()
