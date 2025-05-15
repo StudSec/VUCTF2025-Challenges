@@ -1,5 +1,0 @@
-[0593f7a3-d105-4a8e-a85a-1e3bf587a2bb]
-name = "UARTifact"
-difficulty = "easy"
-flag = {"VUCTF{lov2cl3ansuck}" = 100}
-dynamic_flags = false

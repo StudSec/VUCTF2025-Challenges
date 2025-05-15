@@ -1,1 +1,0 @@
-Time for revenge... This time, we’ve made it more secure. Can you find out what’s written to it?

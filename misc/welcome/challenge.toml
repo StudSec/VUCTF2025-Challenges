@@ -1,6 +1,0 @@
-[aa87bbb9-932a-4e53-86d5-df9625af2e8a]
-name = "welcome"
-difficulty = "easy"
-flag = {"VUCTF{Welcome?}" = 50}
-url = ["nc {{IP}} {{PORT}}"]
-dynamic_flags = false

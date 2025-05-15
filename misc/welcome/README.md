@@ -1,3 +1,0 @@
-# welcome
-
-scan the barcode
