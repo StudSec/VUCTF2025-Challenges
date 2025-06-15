@@ -1,5 +1,0 @@
-[5477fef7-ed95-47ac-b85b-c8c701ee6cbb]
-name = "MIPSterious Access"
-difficulty = "medium"
-flag = {"VUCTF{Sh3llC0de_F0r_R00t_MIPS_Acc3ss}" = 250}
-dynamic_flags = false

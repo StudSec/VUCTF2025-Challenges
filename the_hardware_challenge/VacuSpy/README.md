@@ -15,7 +15,6 @@ uri = "rtsp://192.168.1.220:554/H.264/trackID=1"
 method = "SETUP"
 expected_response = "e1acac580ec4cacb62c34e4ebd407908"
 
-# MD5 helper
 def md5_hash(s):
     return hashlib.md5(s.encode()).hexdigest()
 
@@ -26,7 +25,6 @@ def compute_response(password):
     response = md5_hash(f"{ha1}:{nonce}:{ha2}")
     return response
 
-# Brute-force all 6-letter lowercase combinations
 def brute_force():
     chars = string.ascii_uppercase  # 'abcdefghijklmnopqrstuvwxyz'
     total = 26 ** 6
