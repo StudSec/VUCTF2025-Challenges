@@ -1,1 +1,0 @@
-Can you declassify the shredded document?

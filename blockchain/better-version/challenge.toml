@@ -1,6 +1,0 @@
-[157335e6-923b-41ba-bdac-f19fcf3d4f97]
-name = "better-version"
-difficulty = "medium"
-flag = {"VUCTF{thats_really_a_better_version}" = 250}
-url = ["nc {{IP}} {{PORT}}"]
-dynamic_flags = false
