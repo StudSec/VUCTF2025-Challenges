@@ -1,0 +1,5 @@
+[dbf62002-19fe-4fa2-a57f-f710b13aecd7]
+name = "VacuSpy"
+difficulty = "easy"
+flag = {"VUCTF{admin:UODDXH}" = 75}
+dynamic_flags = false

@@ -1,0 +1,9 @@
+services:
+  roomba_oriented_programming:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${HOSTNAME}:${PORT}:1337"
+    environment:
+      - FLAG=${FLAG}

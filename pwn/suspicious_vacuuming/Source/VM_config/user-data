@@ -1,0 +1,20 @@
+#cloud-config
+password: password
+chpasswd:
+  expire: False
+
+ssh_pwauth: True
+
+runcmd:
+- wget 10.0.2.2:8000/roomba_ids
+- wget 10.0.2.2:8000/flag.txt
+- wget 10.0.2.2:8000/aiden_emulator.sh
+- wget 10.0.2.2:8000/start_challenge.sh
+- useradd FLAG_USER -p $(cat ./flag.txt) -d /home/f -s /bin/false
+- export BPFTRACE_MAX_STRLEN=1024
+- chmod +x ./roomba_ids
+- chmod +x ./start_challenge.sh
+- chmod +x ./aiden_emulator.sh
+- apt update && apt install -y socat
+- ./aiden_emulator.sh &
+- ./start_challenge.sh &

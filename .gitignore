@@ -1,1 +1,3 @@
-Blockchain/.DS_Store
+**/.DS_Store
+**/.mypy_cache
+**/__pycache__

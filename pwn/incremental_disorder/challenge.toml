@@ -1,0 +1,6 @@
+[12342fc7-1ab9-4b50-914d-991be4641234]
+name = "incremental_disorder"
+difficulty = "medium"
+flag = {"VUCTF{7_8te_91N3}" = 250}
+url = ["nc {{IP}} {{PORT}}"]
+dynamic_flags = false

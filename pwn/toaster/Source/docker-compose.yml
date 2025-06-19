@@ -1,0 +1,9 @@
+services:
+  toaster:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${HOSTNAME}:${PORT}:22"
+    environment:
+      - FLAG=${FLAG}

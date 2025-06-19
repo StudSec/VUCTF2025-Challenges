@@ -1,0 +1,6 @@
+[86a812bc-1e95-448d-836d-9945b35368d3]
+name = "core_master"
+difficulty = "medium"
+flag = {"VUCTF{b0f_F0rM4T_p1v0T_4ll_4T_0NCe}" = 250}
+url = ["nc {{IP}} {{PORT}}"]
+dynamic_flags = false
