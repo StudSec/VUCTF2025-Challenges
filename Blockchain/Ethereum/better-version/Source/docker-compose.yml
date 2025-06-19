@@ -1,0 +1,15 @@
+services:
+  launcher:
+    build:
+      context: .
+      network: host
+    environment:
+      - PORT=${NC_PORT}
+      - HTTP_PORT=${RPC_PORT}
+      - ETH_RPC_URL=https://eth.llamarpc.com
+      - FLAG=${FLAG}
+      - PUBLIC_IP=localhost:${RPC_PORT}
+      - SHARED_SECRET=1691d0a6-9b78-4d81-9809-57f64d92f619
+    ports:
+      - "${NC_PORT}:1337"
+      - "${RPC_PORT}:8545"
