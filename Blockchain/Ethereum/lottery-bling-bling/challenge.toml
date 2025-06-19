@@ -1,6 +1,0 @@
-[9b96444b-adc1-47e2-9b09-83b15adf2ac4]
-name = "lottery_bling_bling"
-difficulty = "medium"
-flag = {"CTF{l0773ry_l0v3r}" = 150}
-url = ["nc {{IP}} {{PORT}}"]
-dynamic_flags = false

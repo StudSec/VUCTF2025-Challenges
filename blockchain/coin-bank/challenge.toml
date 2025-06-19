@@ -1,0 +1,6 @@
+[fc53db9e-de5d-4047-ac42-2dafed7036db]
+name = "coin_bank"
+difficulty = "easy"
+flag = {"VUCTF{1_l0v3_f4k3_c0in5}" = 100}
+url = ["nc {{IP}} {{PORT}}"]
+dynamic_flags = false

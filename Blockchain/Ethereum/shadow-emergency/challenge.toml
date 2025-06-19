@@ -1,6 +1,0 @@
-[b31c4429-f3e4-41f9-91a5-bd45e8c02959]
-name = "shadow_emergency"
-difficulty = "medium"
-flag = {"CTF{r33n7r4ncy_3m3r63ncy}" = 100}
-url = ["nc {{IP}} {{PORT}}"]
-dynamic_flags = false
